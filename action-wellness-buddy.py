@@ -38,9 +38,17 @@ def action_wrapper(hermes, intentMessage, conf):
     sentence = "you are awsome"
     hermes.publish_end_session(intent_message.session_id, sentence)
 
+def intent_received(hermes, intent_message):
+    print('Intent {}'.format(intent_message.intent))
+
+    for (slot_value, slot) in intent_message.slots.items():
+        print('Slot {} -> \n\tRaw: {} \tValue: {}'.format(slot_value, slot[0].raw_value, slot[0].slot_value.value.value))
+
+    hermes.publish_end_session(intent_message.session_id, "Success")
+
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
-        h.subscribe_intent(SAY_SOMTHING_NICE, subscribe_intent_callback) \
-         .start()
+        h.subscribe_intents(intent_received).start()
+        # h.subscribe_intent(SAY_SOMTHING_NICE, subscribe_intent_callback).start()

@@ -33,8 +33,8 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def action_wrapper(hermes, intentMessage, conf):
-    {{#each action_code as |a|}}{{a}}
-    {{/each}}
+    sentence = "you are awsome"
+    hermes.publish_end_session(intent_message.session_id, sentence)
 
 
 if __name__ == "__main__":

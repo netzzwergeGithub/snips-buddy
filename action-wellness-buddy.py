@@ -28,11 +28,13 @@ def read_configuration_file(configuration_file):
         return dict()
 
 def subscribe_intent_callback(hermes, intentMessage):
+    print("subscribe_intent_callback")
     conf = read_configuration_file(CONFIG_INI)
     action_wrapper(hermes, intentMessage, conf)
 
 
 def action_wrapper(hermes, intentMessage, conf):
+    print("action_wrapper")
     sentence = "you are awsome"
     hermes.publish_end_session(intent_message.session_id, sentence)
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import pprint
+from get_sentence import get_sentence
+from lib.help_lib import  print_intentMessage
 import configparser
 from hermes_python.hermes import Hermes
 from hermes_python.ffi.utils import MqttOptions
@@ -35,8 +37,9 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 def action_wrapper(hermes, intentMessage, conf):
     print("action_wrapper")
-    sentence = "you are awsome"
-    hermes.publish_end_session(intent_message.session_id, sentence)
+    print_intentMessage(intentMessage)
+    sentence = get_sentence()
+    hermes.publish_end_session(intentMessage.session_id, sentence)
 
 
 if __name__ == "__main__":

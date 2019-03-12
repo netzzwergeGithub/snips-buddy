@@ -10,7 +10,7 @@ import io
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
 
-SAY_SOMTHING_NICE = "sagwasnettes"
+SAY_SOMTHING_NICE = "mardeh:sagwasnettes"
 
 
 class SnipsConfigParser(configparser.SafeConfigParser):

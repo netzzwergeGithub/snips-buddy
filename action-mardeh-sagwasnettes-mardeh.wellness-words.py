@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 import pprint
 from get_sentence import get_sentence
-from lib.help_lib import  print_intentMessage
+from debug_lib.help_lib import  print_intentMessage
+from debug_lib.help_lib import  save_intentMessage
 import configparser
 from hermes_python.hermes import Hermes
 from hermes_python.ffi.utils import MqttOptions
@@ -36,8 +37,10 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def action_wrapper(hermes, intentMessage, conf):
+    session_id = intentMessage.session_id
     print("action_wrapper")
     print_intentMessage(intentMessage)
+    save_intentMessage(intentMessage, "tmp/{}_messageInfo.txt".format(session_id))
     sentence = get_sentence()
     hermes.publish_end_session(intentMessage.session_id, sentence)
 

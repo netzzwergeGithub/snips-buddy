@@ -18,3 +18,7 @@ def getFormattedIntentMessage(intent_message):
 def print_intentMessage(intent_message):
   print(getFormattedIntentMessage(intent_message))
 
+def save_intentMessage(intent_message, file_path):
+  with open(file_path, 'w') as file:
+    file.write(getFormattedIntentMessage(intent_message))
+
